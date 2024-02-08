@@ -1,0 +1,27 @@
+### CLIENTS GET / GETS
+
+GET http://localhost:8080/api/clients/
+
+### CLIENTS CREATE
+POST http://localhost:8080/api/clients HTTP/1.1
+content-type: application/json
+
+{
+  "first_name":   "Carlos",
+  "last_name":    "Huk",
+  "code":         "24657685",
+  "celphone":     "3541613185",
+  "email":        "carloshuk@gmail.com"
+}
+
+### CLIENTS UPDATE
+PUT http://localhost:8080/api/clients/65c52104791db857ffcbfe8b HTTP/1.1
+content-type: application/json
+
+{
+  "first_name":   "Carlos",
+  "last_name":    "Hukk",
+  "code":         "24657685",
+  "celphone":     "3541613185",
+  "email":        "carloshuk@gmail.com"
+}

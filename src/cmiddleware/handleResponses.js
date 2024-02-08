@@ -34,7 +34,7 @@ const handleResponses = (req, res, next) => {
   res.tokenCookie = (token) => res.cookie('token', token, cookiesoptions);
 
   // MULTIPLES
-  res.sendSuccessOrNotFound = (variable, title) => variable ? res.sendSuccess(variable) : res.sendUserError(`${title} not found`);
+  res.sendSuccessOrNotFound = (variable, title) => (variable) ? res.sendSuccess(variable) : res.sendNotFound(`${title} not found`);
   res.sendTokenCookieSuccess = (token, data) => res.tokenCookie(token).sendSuccess(data);
   res.sendCatchError = (error, message = "Internal Server Error") => (error instanceof CustomError) ? res.sendUserError(error.error, error) : res.sendServerError(message, error.toString());
   

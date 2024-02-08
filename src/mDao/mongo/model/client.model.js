@@ -4,6 +4,7 @@ import mongososePaginate from 'mongoose-paginate-v2'
 const clientSchema = Schema({
   first_name:   { type: String,  required: true },
   last_name:    { type: String },
+  code:         { type: String,  required: true, unique: true },
   celphone:     { type: String },
   address:      { type: String },
   city:         { type: String },

@@ -10,7 +10,8 @@ const productSchema = new Schema({
   code:         { type: String, uppercase: true, required: true },
   amount:       { type: Number, precision: 2, required: true },
   thumbnail:    { type: String, lowercase: true },
-  atCreated:    { type: Date,   default: Date() }
+  atCreated:    { type: Date,   default: Date() },
+  lastupdated:  { type: Date,    required: true, default: Date()}
 });
 
 productSchema.plugin(mongososePaginate)

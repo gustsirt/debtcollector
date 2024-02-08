@@ -2,6 +2,7 @@ export default class ClientDTO {
   constructor(client) {
       this.first_name = client.first_name;
       this.last_name  = client.last_name;
+      this.code       = client.code;
       this.celphone   = client.celphone;
       this.address    = client.address;
       this.city       = client.city;

@@ -7,9 +7,9 @@ const router = Router();
 //'http://localhost:PORT/api/clients/'
 export default router
   .get('/',         control.gets)
-  .get('/:eid',     () => {})
-  .post('/',        () => {})
-  .put('/:eid',     () => {})
-  .delete('/:eid',  () => {})
+  .get('/:eid',     control.get)
+  .post('/',        control.create)
+  .put('/:eid',     control.update)
+  .delete('/:eid',  control.delete)
 
 

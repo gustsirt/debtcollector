@@ -1,8 +1,8 @@
-import clientModel from "./model/client.model.js";
+import productModel from "./model/product.model";
 
-export default class ClientDaoMongo {
+export default class ProductDaoMongo {
   constructor() {
-    this.model = clientModel;
+    this.model = productModel;
   }
   get    = async (filter = {})        => await this.model.find(filter)
   getBy  = async (filter)             => await this.model.findOne(filter)
