@@ -6,9 +6,12 @@ const clientSchema = Schema({
   last_name:    { type: String },
   celphone:     { type: String },
   address:      { type: String },
-  email:        { type: String,  required: true,  unique: true },
+  city:         { type: String },
+  state:        { type: String },
+  email:        { type: String,  required: true, unique: true },
   birthday:     { type: Date },
-  atCreated:    { type: Date,   default: Date() }
+  atCreated:    { type: Date,    default: Date() },
+  lastupdated:  { type: Date,    required: true, default: Date()}
 })
 
 clientSchema.plugin(mongososePaginate)

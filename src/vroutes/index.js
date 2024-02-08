@@ -1,12 +1,12 @@
 import { Router } from "express";
+import clientsRoute from "./api/clients.route.js";
+import handleResponses from "../cmiddleware/handleResponses.js";
 
 const router = Router();
 
-router.use('/api/users/', () => {});
-router.use('/api/clients/', () => {});
-router.use('/api/products/', () => {});
-router.use('/api/payments/', () => {});
-router.use('/api/messages/', () => {});
-
-
-export default router;
+export default router
+  .use('/api/users/',   handleResponses, () => {})
+  .use('/api/clients/', handleResponses, clientsRoute)
+  .use('/api/products/',handleResponses, () => {})
+  .use('/api/payments/',handleResponses, () => {})
+  .use('/api/messages/',handleResponses, () => {})

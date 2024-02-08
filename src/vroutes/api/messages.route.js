@@ -2,7 +2,9 @@ import { Router } from "express";
 
 const router = Router();
 
-router.get('/', () => {});
-
-
-export default router;
+export default router
+  .get('/', () => {})
+  .get('/:eid', () => {})
+  .post('/', () => {})
+  .put('/:eid', () => {})
+  .delete('/:eid', () => {})

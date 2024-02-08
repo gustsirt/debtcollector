@@ -1,6 +1,6 @@
 import express from 'express';
 import program from './config/commander.js';
-import configObject from './config/index.js';
+import configObject, { MongoSingleton } from './config/index.js';
 import cookieParser from 'cookie-parser'
 import __dirname from './outils/dirname.js';
 import appRouter from './vroutes/index.js'
@@ -10,6 +10,7 @@ console.log('Mode config: ' + mode);
 
 const port = configObject.port;
 const app = express();
+MongoSingleton.getInstance();
 
 // configuraciones de la App
 app.use(express.json());

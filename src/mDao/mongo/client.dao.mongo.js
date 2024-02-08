@@ -1,22 +1,12 @@
-import clientsModel from "./model/client.model";
+import clientModel from "./model/client.model.js";
 
-class clientDaoMongo {
+export default class ClientDaoMongo {
   constructor() {
-    this.model = clientsModel;
+    this.model = clientModel;
   }
-  get = async () => await this.model.find({})
-  getBy = async (filter) => await this.model.find(filter)
-  create = async () => {}
-  update = async () => {}
-  delete = async () => {}
-
-
-  // createUser = async (newUser) => {
-  //   newUser.cart = await cartsService.create();
-  //   await this.model.create(newUser)
-  // }
-  // updateUser = async (uid, userUpdate) => await this.model.findOneAndUpdate({_id: uid}, userUpdate)
-  // deleteUser = async (uid) => await this.model.findOneAndDelete({_id: uid})
+  get    = async (filter = {})        => await this.model.find(filter)
+  getBy  = async (filter)             => await this.model.findOne(filter)
+  create = async (newElement)         => await this.model.create(newElement)
+  update = async (eid, elementUpdate) => await this.model.findOneAndUpdate({_id: eid}, elementUpdate)
+  delete = async (uid)                => await this.model.findOneAndDelete({_id: uid})
 }
-
-export default clientDaoMongo;
