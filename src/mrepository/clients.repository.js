@@ -4,7 +4,7 @@ export default class ClientsRepository {
   constructor(dao) {
     this.dao = dao;
   }
-  get    = async (filter = {})        => await this.dao.get(filter)
+  get    = async (filter)             => await this.dao.get(filter)
   getBy  = async (filter)             => await this.dao.getBy(filter)
   create = async (newElement)         => await this.dao.create(newElement)
   update = async (eid, elementUpdate) => {
