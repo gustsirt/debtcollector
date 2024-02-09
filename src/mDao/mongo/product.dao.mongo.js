@@ -1,12 +1,8 @@
-import productModel from "./model/product.model";
+import DaoMongo from "./dao.mongo.js";
+import productModel from "./model/product.model.js";
 
-export default class ProductDaoMongo {
+export default class ProductDaoMongo  extends DaoMongo{
   constructor() {
-    this.model = productModel;
+    super (productModel);
   }
-  get    = async (filter = {})        => await this.model.find(filter)
-  getBy  = async (filter)             => await this.model.findOne(filter)
-  create = async (newElement)         => await this.model.create(newElement)
-  update = async (filter, elementUpdate) => await this.model.findOneAndUpdate(filter, elementUpdate) // elemento previo a actualizarce
-  delete = async (filter)                => await this.model.findOneAndDelete(filter)
 }

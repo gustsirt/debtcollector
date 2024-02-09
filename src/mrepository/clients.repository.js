@@ -1,6 +1,16 @@
 import ClientDTO from "../mDto/client.dto.js";
+import CustomRepository from "./custom.repository.js";
 
-export default class ClientsRepository {
+export default class ClientsRepository extends CustomRepository{
+  constructor(dao) {
+    super(dao)
+  }
+  update = async (eid, elementUpdate) => {
+    const elementToUpdate = new ClientDTO(elementUpdate);
+    return await this.dao.update({_id: eid}, elementToUpdate)}
+}
+
+/*export default class ClientsRepository {
   constructor(dao) {
     this.dao = dao;
   }
@@ -11,4 +21,4 @@ export default class ClientsRepository {
     const elementToUpdate = new ClientDTO(elementUpdate);
     return await this.dao.update({_id: eid}, elementToUpdate)}
   delete = async (uid)                => await this.dao.delete({_id: uid})
-}
+}*/

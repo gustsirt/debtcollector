@@ -1,5 +1,13 @@
+import CustomController from "./custom.controller.js";
 import { clientsService } from "../mrepository/service.js";
 
+export default class ClientsController extends CustomController {
+  constructor() {
+    super(clientsService);
+  }
+}
+
+/*
 export default class ClientsController {
   constructor() {
     this.service = clientsService;
@@ -55,3 +63,4 @@ export default class ClientsController {
     }
   }
 }
+*/

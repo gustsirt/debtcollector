@@ -10,7 +10,7 @@ const clientSchema = Schema({
   city:         { type: String },
   state:        { type: String },
   email:        { type: String,  required: true, unique: true },
-  birthday:     { type: Date },
+  birthday:     { type: Date   },
   atCreated:    { type: Date,    default: Date() },
   lastupdated:  { type: Date,    required: true, default: Date()}
 })

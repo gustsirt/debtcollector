@@ -7,11 +7,11 @@ POST http://localhost:8080/api/clients HTTP/1.1
 content-type: application/json
 
 {
-  "first_name":   "Carlos",
+  "first_name":   "Miguel",
   "last_name":    "Huk",
-  "code":         "24657685",
+  "code":         "24656685",
   "celphone":     "3541613185",
-  "email":        "carloshuk@gmail.com"
+  "email":        "miguelhuk@gmail.com"
 }
 
 ### CLIENTS UPDATE
