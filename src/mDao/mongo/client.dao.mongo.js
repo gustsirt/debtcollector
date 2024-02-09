@@ -10,3 +10,6 @@ export default class ClientDaoMongo {
   update = async (filter, elementUpdate) => await this.model.findOneAndUpdate(filter, elementUpdate, {new: true})
   delete = async (filter)                => await this.model.findOneAndDelete(filter, {new: true})
 }
+
+
+//const {default: nombre} = await ?
