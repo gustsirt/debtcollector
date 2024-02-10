@@ -3,7 +3,7 @@ export default class CustomController {
     this.service = service;
   }
 
-  gets   = async (req, res) => {
+  get    = async (req, res) => {
     try {
       const element = await this.service.get();
       res.sendSuccessOrNotFound(element);
@@ -12,7 +12,18 @@ export default class CustomController {
     }
   }
 
-  get    = async (req, res) => {
+  getBy  = async (req, res) => {
+    const {ekey, evalue} = req.query
+    const filter = {}
+    filter[ekey] = evalue;
+    try {
+      const element = await this.service.getBy(filter);
+      res.sendSuccessOrNotFound(element);
+    } catch (error) {
+      res.sendCatchError(error, "An error occurred in the API request");
+    }
+  }
+  getById  = async (req, res) => {
     const {eid} = req.params
     try {
       const element = await this.service.getBy({_id: eid});
@@ -32,7 +43,7 @@ export default class CustomController {
     }
   }
 
-  update = async (req, res) => {
+  updateId = async (req, res) => {
     const {eid} = req.params
     const newElement = req.body
     try {
@@ -43,7 +54,7 @@ export default class CustomController {
     }
   }
 
-  delete = async (req, res) => {
+  deleteId = async (req, res) => {
     const {eid} = req.params
     try {
       const element = await this.service.delete({_id: eid});
