@@ -8,13 +8,16 @@
   "type": "module",
   "scripts": {
     "start": "node src/server.js --mode development",
-    "dev": "node --watch src/server.js --mode development"
+    "dev": "node --watch src/server.js --mode development",
+    "dev:client": "vite dev --port 3001",
+    "dev2": "npm run dev && npm run dev:client"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "commander": "^12.0.0",
     "connect-mongo": "^5.1.0",
     "cookie-parser": "^1.4.6",
+    "dayjs": "^1.11.10",
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",

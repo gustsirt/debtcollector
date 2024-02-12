@@ -1,5 +1,4 @@
 import { Router } from "express";
-import handleResponses from "../../cmiddleware/handleResponses.js";
 
 export default class CustomRouter {
   constructor(controller) {
@@ -17,10 +16,10 @@ export default class CustomRouter {
   } //queda vacia, se usa en las instancias
   getRouter() { return this.router; } // export default routerClass
 
-  get   (path, ...callbacksA) { this.router.get   (path, handleResponses, this.applyCallbacks(callbacksA)); }
-  post  (path, ...callbacksA) { this.router.post  (path, handleResponses, this.applyCallbacks(callbacksA)); }
-  put   (path, ...callbacksA) { this.router.put   (path, handleResponses, this.applyCallbacks(callbacksA)); }
-  delete(path, ...callbacksA) { this.router.delete(path, handleResponses, this.applyCallbacks(callbacksA)); }
+  get   (path, ...callbacksA) { this.router.get   (path, this.applyCallbacks(callbacksA)); }
+  post  (path, ...callbacksA) { this.router.post  (path, this.applyCallbacks(callbacksA)); }
+  put   (path, ...callbacksA) { this.router.put   (path, this.applyCallbacks(callbacksA)); }
+  delete(path, ...callbacksA) { this.router.delete(path, this.applyCallbacks(callbacksA)); }
 
   // metodo para ejecutar nuestra callbacks [middeleware y el  (req, res) => {...}]
   applyCallbacks(callbacksArray) {
