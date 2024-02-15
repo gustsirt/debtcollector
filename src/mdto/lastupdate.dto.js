@@ -1,7 +1,9 @@
-export default class LastUpdateDTO {
+class LastUpdateDTO {
   constructor(element) {
-      Object.assign(this, element);
-      this.lastupdate = Date();
+    this.things = {};
+    Object.assign(this.things, element);
+    this.things.lastupdated = Date();
     }
-
 }
+
+export default LastUpdateDTO

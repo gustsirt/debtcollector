@@ -8,7 +8,7 @@ const productSchema = new Schema({
   status:       { type: String  },
   category1:    { type: String, lowercase: true, default: "Generic" },
   category2:    { type: String, lowercase: true, default: "Generic" },
-  amount:       { type: Number, precision: 2, required: true },
+  price:        { type: Number, precision: 2, required: true },
   thumbnail:    { type: String, lowercase: true },
   atCreated:    { type: Date,   default: Date() },
   lastupdated:  { type: Date,   required: true, default: Date()}
