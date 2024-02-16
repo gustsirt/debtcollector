@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router"
-import ClientDetail from "../components/clients/ClientDetail"
+import { useParams} from "react-router"
+import { Link } from "react-router-dom";
 import Swal from 'sweetalert2';
+import ClientDetail from "../components/clients/ClientDetail.jsx"
+
 
 const client = () => {
   const [client, setclient] = useState({})
@@ -41,7 +43,10 @@ const client = () => {
   }
 
   return (  
-    <ClientDetail client={client} onSave={handleSave} />
+    <>
+      <ClientDetail client={client} onSave={handleSave} />
+      <Link to="/clients/">Volver a Clientes</Link>
+    </>
   )
 }
 
