@@ -9,6 +9,7 @@ const productSchema = new Schema({
   category1:    { type: String, lowercase: true, default: "Generic" },
   category2:    { type: String, lowercase: true, default: "Generic" },
   price:        { type: Number, precision: 2, required: true },
+  stock:        { type: Number, required: true, default: 1 },
   thumbnail:    { type: String, lowercase: true },
   atCreated:    { type: Date,   default: Date() },
   lastupdated:  { type: Date,   required: true, default: Date()}

@@ -9,7 +9,6 @@ class CustomRepositoryLU {
   create = async (newElement)         => await this.dao.create(newElement)
   update = async (filter, elementUpdate) => {
     const elementToUpdate = (new LastUpdateDTO(elementUpdate)).things;
-    console.log(2, elementToUpdate);
     return await this.dao.update(filter, elementToUpdate)}
   delete = async (filter)                => await this.dao.delete({_id: uid})
 }

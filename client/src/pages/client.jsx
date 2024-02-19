@@ -45,7 +45,7 @@ const client = () => {
   return (  
     <>
       <ClientDetail client={client} onSave={handleSave} />
-      <Link to="/clients/">Volver a Clientes</Link>
+      <Link className="linkBack m-2" to="/clients/">Volver a Clientes</Link>
     </>
   )
 }
