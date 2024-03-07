@@ -8,9 +8,9 @@ import {
   BiCaretRight,
   BiCaretDown,
 } from 'react-icons/bi';
-import './root.scss'
+import './layout.scss'
 
-const Root = () => {
+const Layout = () => {
   return (
     <>
       <header className="header">
@@ -77,4 +77,4 @@ const Root = () => {
   )
 }
 
-export default Root
+export default Layout

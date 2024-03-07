@@ -1,4 +1,4 @@
-import LastUpdateDTO from '../mdto/lastupdate.dto.js';
+import LastUpdateDTO from '../dto/lastupdate.dto.js';
 
 class CustomRepositoryLU {
   constructor(dao) {

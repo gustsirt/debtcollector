@@ -1,31 +1,33 @@
 import program from './config/commander.js';
 import express from 'express';
-import cors from 'cors';
 import configObject, { MongoSingleton } from './config/index.js';
-import cookieParser from 'cookie-parser'
-import __dirname from './outils/dirname.js';
-import appRouter from './vroutes/index.js'
-import handleResponses from './cmiddleware/handleResponses.js';
+import cors from 'cors';
+import __dirname from './utils/dirname.js';
+//import cookieParser from 'cookie-parser'
+import { addLogger, logger } from './utils/logger.js';
+import handleResponses from './middleware/handleResponses.js';
+import appRouter from './routes/index.js'
 
 const {mode} = program.opts();
-console.log('Mode config: ' + mode);
+logger.info('Mode config: ' + mode);
 
-const port = configObject.port;
 const app = express();
 MongoSingleton.getInstance();
 
 // configuraciones de la App
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
-app.use(cors())
 
-app.use(cookieParser(configObject.cookies_code))
+//app.use(cookieParser(configObject.cookies_code))
+app.use(addLogger)
 app.use(handleResponses)
 
 app.use(appRouter);
 
 // inicio servidor
+const port = configObject.port;
 app.listen(port, () => {
-  console.log(`Server andando en port ${port}`);
+  logger.info(`Server andando en port ${port}`);
 });

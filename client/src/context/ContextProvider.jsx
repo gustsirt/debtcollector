@@ -3,7 +3,9 @@ import ConfigProvider from "./ContextConfig.jsx"
 const ContextProvider = ({children}) => {
   return (
     <ConfigProvider>
-      {children}
+      <UserProvider>
+        {children}
+      </UserProvider>
     </ConfigProvider>
   )
 }

@@ -1,20 +1,21 @@
 import { createHashRouter } from 'react-router-dom';
 
-import Root from './pages/root.jsx';
-import Home from './pages/home.jsx';
+import Layout from './pages/Layout.jsx';
+import Home from './pages/Home.jsx';
 import Colores from './pages/temporal/Colores.jsx';
-import Products from './pages/products.jsx';
-import Product from './pages/product.jsx';
-import Clients from './pages/clients.jsx';
-import Client from './pages/client.jsx';
+import Products from './pages/Products.jsx';
+import Product from './pages/Product.jsx';
+import Clients from './pages/Clients.jsx';
+import Client from './pages/Client.jsx';
+import LogIn from './pages/LogIn.jsx';
 
 const router = createHashRouter([
   // createBrowserRouter reemplazaria --> createHashRouter (se pone hash para que lo tome github pages)
   {
     path: '/',
-    element: <Root />,
+    element: <Layout />,
     children: [
-      { index: true, element: <Home /> },
+      { index: true, element: <LogIn /> },
       { path: 'products/', element: <Products /> },
       { path: 'product/:pid', element: <Product /> },
       { path: 'clients/', element: <Clients /> },

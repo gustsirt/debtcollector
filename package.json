@@ -24,6 +24,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.1.1",
     "mongoose-paginate-v2": "^1.8.0",
-    "react-hook-form": "^7.51.0"
+    "react-hook-form": "^7.51.0",
+    "winston": "^3.12.0"
   }
 }

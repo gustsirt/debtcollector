@@ -1,5 +1,5 @@
 import CustomController from "./custom.controller.js";
-import { paymentPlanService, paymentService, transactionsService } from "../mrepository/service.js";
+import { paymentPlanService, paymentService, transactionsService } from "../repository/service.js";
 import dayjs from "dayjs";
 
 export default class TransactionsController extends CustomController {
