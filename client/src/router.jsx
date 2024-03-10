@@ -1,9 +1,9 @@
 import { createHashRouter } from 'react-router-dom';
 
-import Layout from './pages/Layout.jsx';
+import Layout from './pages/Layout/Layout.jsx';
 //import Home from './pages/Home.jsx';
-import LogIn from './pages/LogIn.jsx';
-import Register from './pages/Register.jsx';
+import LogIn from './pages/UserAccess/LogIn.jsx';
+import Register from './pages/UserAccess/Register.jsx';
 import Colores from './pages/temporal/Colores.jsx';
 import Products from './pages/Products.jsx';
 import Product from './pages/Product.jsx';

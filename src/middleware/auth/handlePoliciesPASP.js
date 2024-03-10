@@ -1,6 +1,6 @@
 import passport from "passport";
 
-const uControl = new UsersController();
+//const uControl = new UsersController();
 
 // ? AUTH JWT BEARER - PASSPORT
 
@@ -12,7 +12,7 @@ export const handleAuth = (policies) => {
         if (err) next(err)
 
         if (user) {
-          req.user = await uControl.getDataUserById(user.id)
+          req.user = "aa" //await uControl.getDataUserById(user.id)
         }
 
         if(policies[0] === 'PUBLIC') return next();

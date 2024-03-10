@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node src/server.js --mode development",
     "dev": "node --watch src/server.js --mode development",
-    "dev:client": "vite dev --port 3001",
+    "nodemon": "nodemon src/server.js --mode development",
     "dev2": "npm run dev && npm run dev:client"
   },
   "dependencies": {

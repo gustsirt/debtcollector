@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'
 import program from './commander.js';
 import { connect } from 'mongoose';
+import { logger } from '../utils/logger.js';
 
 const opts = program.opts();
 
@@ -23,7 +24,7 @@ const configObject = {
 
 export default configObject;
 
-export class MongoSingleton {
+class MongoSingleton {
   static instance
   constructor() {
     connect(configObject.mongo_uri);
@@ -36,5 +37,13 @@ export class MongoSingleton {
     }
     console.log('Base de Datos ya conectada');
     return this.instance;
+  }
+}
+export const connectDb = async () => {
+  try {
+    MongoSingleton.getInstance()
+    logger.info("Db connected")
+  } catch(err) {
+      logger.error(err)
   }
 }

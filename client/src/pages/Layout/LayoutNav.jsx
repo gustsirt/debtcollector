@@ -1,6 +1,4 @@
-
 import { NavLink } from 'react-router-dom';
-import { BiLogIn, BiLogOut, BiCart, BiSolidUser, BiCreditCard,BiSolidUserPlus, BiSolidEdit } from "react-icons/bi";
 import { useState } from 'react';
 
 

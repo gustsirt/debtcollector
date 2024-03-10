@@ -1,7 +1,11 @@
-@import '../styles/variables';
+@import '../../styles/variables';
 
+$layoutBrand: $fontB;
 $headercol1: $color;
-$headercol2: $cgris3;
+$headercol2: $cgrey3;
+
+$footercol1: $clgt4;
+$footercol2: $cdrk3;
 
 .header {
   width: 100%;
@@ -23,7 +27,7 @@ $headercol2: $cgris3;
       justify-items: center;
       padding: 1rem;
       list-style: none;
-
+      
       li{
         margin: 0.5rem;
         font-weight: 500;
@@ -50,9 +54,6 @@ $headercol2: $cgris3;
   align-items: center;
 }
 
-$footercol1: $ccla4;
-$footercol2: $cosc3;
-
 .footer {
   width: 100%;
   background: $footercol1;
@@ -69,7 +70,7 @@ $footercol2: $cosc3;
     font-size: 36px;
     font-weight: 500;
     position: relative;
-    font-family: $fuenteT, sans-serif;
+    font-family: $layoutBrand, sans-serif;
     margin: 0 0 15px 0;
   }
 
