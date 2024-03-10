@@ -8,7 +8,7 @@ const Layout = () => {
     <>
       <header className="header">
         <Link to="/">
-          <img src="./img/LogoColor.png" alt="Logotipo" />
+          <img className="drop-shadow" src="./img/LogoColor.png" alt="Logotipo" />
         </Link>
         <LayoutNav/>
       </header>

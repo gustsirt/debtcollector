@@ -10,7 +10,7 @@ import {
 const LayoutFooter = () => {
   return (
     <footer className="footer">
-    <img src="/img/logo.png" alt="Logotipo" />
+    <img className="drop-shadow"src="/img/logo.png" alt="Logotipo" />
     <p className="title">DebtCollector</p>
     <p className="descrip">
       WebApp para gestionar cobros
