@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
 import './useraccess.scss';
-import SessionService from "../../services/apis/session.service.jsx";
-import SwalAlert from "../../components/SwalAlert.jsx";
+import useSessionService from "../../services/useSessionService.jsx";
+import useSwalAlert from "../../hook/useSwalAlert.jsx";
 
 const Register = () => {
-  const { sessionRegister } = SessionService();
-  const { messageAndRedirect } = SwalAlert()
+  const { sessionRegister } = useSessionService();
+  const { messageAndRedirect } = useSwalAlert()
   const { register, handleSubmit, getValues, formState: { errors, isDirty, isValid } } = useForm({
     mode: "onBlur",
     defaultValues: {

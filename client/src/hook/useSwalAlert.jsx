@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import Swal from 'sweetalert2'
 
-const SwalAlert = () => {
+const useSwalAlert = () => {
   const navigate = useNavigate();
 
   const messageAndRedirect = ( message, icon, redirect = null) => {
@@ -21,4 +21,4 @@ const SwalAlert = () => {
     messageAndRedirect
   }
 }
-export default SwalAlert
+export default useSwalAlert
