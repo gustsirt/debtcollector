@@ -1,13 +1,11 @@
-import { useContext } from "react";
-import { ContextConfig } from "../../context/ContextConfig.jsx";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import Swal from 'sweetalert2'
+import './useraccess.scss';
+import SessionService from "../../services/apis/session.service.jsx";
+import SwalAlert from "../../components/SwalAlert.jsx";
 
 const Register = () => {
-  const { uriBase } = useContext(ContextConfig);
-  const navigate = useNavigate();
-
+  const { sessionRegister } = SessionService();
+  const { messageAndRedirect } = SwalAlert()
   const { register, handleSubmit, getValues, formState: { errors, isDirty, isValid } } = useForm({
     mode: "onBlur",
     defaultValues: {
@@ -18,25 +16,15 @@ const Register = () => {
   
   const onSubmit = async data => {
     try {
-      const requestOptions = {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(data)
-      };
-      const respJson = await fetch(`${uriBase}api/sessions/register`, requestOptions);
-      const resp = await respJson.json();
-      //console.log(resp);
+      const resp = await sessionRegister(data)
 
       if (resp?.isError === false) {
-        Swal.fire({ icon: "success", text: resp.message }).then(() => {
-          navigate("/login/", { replace: true });
-        });
+        messageAndRedirect("Login Exitoso", "success", "/login")
       } else {
-        Swal.fire({ icon: "error", text: resp.message || "Error en el registro" });
+        messageAndRedirect(resp.message || "Error al registrarse", "error")
       }
     } catch (error) {
-      // console.error(error);
-      Swal.fire({ icon: "error", text: "Error en el registro debido a un problema en el sistema" });
+        messageAndRedirect("Error en el registro debido a un problema en el sistema", "error")
     }
   };
   
@@ -55,8 +43,19 @@ const Register = () => {
 
         <label htmlFor="birthday">Fecha de Nacimiento</label>
         <input type="date" {...register("birthday", { required: true })} />
-        {errors.birthday && <p className="error-message">Este campo es requerido</p>
-        }
+        {errors.birthday && <p className="error-message">Este campo es requerido</p>}
+
+        <label htmlFor="typecode">Tipo de Documento</label>
+        <select {...register("typecode", { required: true })}>
+          <option value="DNI">DNI</option>
+          <option value="Pasaporte">Pasaporte</option>
+        </select>
+        {errors.typecode && <p className="error-message">Selecciona un tipo de documento</p>}
+
+        <label htmlFor="code">Documento</label>
+        <input type="number" {...register("code", { required: true })}     />
+        {errors.code && <p className="error-message">Este campo es requerido</p>}
+
         <label htmlFor="email">Email</label>
         <input type="email" {...register("email", { required: true })} />
         {errors.email && <p className="error-message">Este campo es requerido</p>}

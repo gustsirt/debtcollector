@@ -1,5 +1,5 @@
 import { Router } from "express";
-import SessionsController from "../../controller/sessions.controller.js";
+import SessionsController from "../../controller/user.sessions.controller.js";
 
 
 //import { handleAuth } from "../../middleware/handlePoliciesPASP.js";

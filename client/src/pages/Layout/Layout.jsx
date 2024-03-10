@@ -13,7 +13,7 @@ const Layout = () => {
         <LayoutNav/>
       </header>
       <main className="main">
-        <Outlet />
+          <Outlet />
       </main>
       <LayoutFooter/>
     </>

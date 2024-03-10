@@ -1,4 +1,5 @@
 import ConfigProvider from "./ContextConfig.jsx"
+import UserProvider from "./ContextUser.jsx"
 
 const ContextProvider = ({children}) => {
   return (

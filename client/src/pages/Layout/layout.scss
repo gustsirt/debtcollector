@@ -4,6 +4,7 @@ $layoutBrand: $fontB;
 $headercol1: $color;
 $headercol2: $cgrey3;
 
+$main-back: $cgrey3;
 $footercol1: $clgt4;
 $footercol2: $cdrk3;
 
@@ -52,6 +53,22 @@ $footercol2: $cdrk3;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .page-container {
+    padding: 0.4em;
+    width: 100%;
+    background-color: $main-back;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    .title {
+      margin-top: 0.4em;
+      margin-bottom: 0.7em;
+      text-align: center;
+    }
+  }
 }
 
 .footer {

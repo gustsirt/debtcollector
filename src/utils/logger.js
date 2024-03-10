@@ -2,6 +2,8 @@ import winston from 'winston'
 import program from '../config/commander.js'
 const {mode} = program.opts();
 
+const { simple, combine, timestamp, colorize, errors } = winston.format;
+
 const customOption = {
   levels: {
     fatal: 0,
@@ -24,25 +26,30 @@ const transportOption = {
   development: [
     new winston.transports.Console({
       level: 'debug',
-      format: winston.format.combine(
-        winston.format.colorize({colors: customOption.colors}),
-        winston.format.simple()
+      format: combine(
+        errors({ stack: true }),
+        colorize({colors: customOption.colors}),
+        simple(),
+        timestamp()
       )
     }),
   ],
   production: [
     new winston.transports.Console({
       level: 'info',
-      format: winston.format.combine(
-        winston.format.colorize({colors: customOption.colors}),
-        winston.format.simple()
+      format: combine(
+        colorize({colors: customOption.colors}),
+        simple(),
+        timestamp()
       )
     }),
     new winston.transports.File({
       filename: './errors.log',
       level: 'error',
-      format: winston.format.simple()
-    })
+      format: combine(
+        simple(),
+        timestamp()
+    )})
   ]
 }
 

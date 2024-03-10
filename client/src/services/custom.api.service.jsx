@@ -1,4 +1,4 @@
-import { ContextConfig } from "../context/ContextConfig";
+import { ContextConfig } from "../context/ContextConfig.jsx";
 
 const { uriBase } = useContext( ContextConfig )
 

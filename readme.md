@@ -1,5 +1,5 @@
 
 # Proyect: Debt Collector
 
-Autor: Sirtori Gustavo
-Licence: MIT
+* Autor: Sirtori Gustavo
+* Licence: MIT

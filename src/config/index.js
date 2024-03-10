@@ -32,17 +32,16 @@ class MongoSingleton {
 
   static getInstance() {
     if(!this.instance){
-      console.log('Conectado a Base de Datos');
+      logger.info('BD Connected to Mongo');
       return this.instance = new MongoSingleton();
     }
-    console.log('Base de Datos ya conectada');
+    logger.info('BD was already connected');
     return this.instance;
   }
 }
 export const connectDb = async () => {
   try {
     MongoSingleton.getInstance()
-    logger.info("Db connected")
   } catch(err) {
       logger.error(err)
   }

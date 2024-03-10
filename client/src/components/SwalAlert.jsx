@@ -1,20 +1,24 @@
-import { useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+
 import Swal from 'sweetalert2'
 
-const SwalAlert = ( message, icon, redirect) => {
-  useEffect(() => {
+const SwalAlert = () => {
+  const navigate = useNavigate();
+
+  const messageAndRedirect = ( message, icon, redirect = null) => {
     Swal.fire({
       icon: icon,
       text: message,
-      showConfirmButton: path ? true : false,
+      showConfirmButton: redirect ? true : false,
     }).then((result) => {
-      if (result.isConfirmed && path) {
-        navigate(path, { replace: true });
+      if (result.isConfirmed && redirect) {
+        navigate(redirect, { replace: true });
       }
     });
-  }, [message, icon, path]);
+  }
 
-  return null;
+  return {
+    messageAndRedirect
+  }
 }
-
 export default SwalAlert

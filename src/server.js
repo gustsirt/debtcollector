@@ -6,7 +6,10 @@ import __dirname from './utils/dirname.js';
 //import cookieParser from 'cookie-parser'
 import { addLogger, logger } from './utils/logger.js';
 import handleResponses from './middleware/handleResponses.js';
+import passport from 'passport';
+import initializePassport from './middleware/auth/passport.config.js';
 import appRouter from './routes/index.js'
+
 
 const {mode} = program.opts();
 logger.info('Mode config: ' + mode);
@@ -24,10 +27,15 @@ app.use(express.static(__dirname + '/public'));
 app.use(addLogger)
 app.use(handleResponses)
 
+// passport
+app.use(passport.initialize())
+initializePassport()
+
 app.use(appRouter);
 
 // inicio servidor
 const port = configObject.port;
+
 app.listen(port, () => {
-  logger.info(`Server andando en port ${port}`);
+  logger.info(`Server running on port ${port}`);
 });

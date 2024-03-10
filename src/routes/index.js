@@ -4,7 +4,8 @@ import ClientCRouter from "./api/clients.croute.js";
 import ProductCRouter from "./api/products.croute.js";
 import TransactionCRouter from "./api/transactions.croute.js";
 import pruebasRouter from "./api/xpruebas.route.js";
-import { logger } from "../utils/logger.js";
+import errorHandler from "../middleware/handleError.js";
+
 //import { handleAuth } from "../middleware/auth/handlePoliciesPASP.js";
 
 const router = Router();
@@ -19,7 +20,5 @@ export default router
   .use('/api/messages/',    ( ) => {})
   .use('/api/pruebas/',     pruebasRouter)
   .use('*', (req, res) => res.status(404).send('Not Found'))
-  .use((err, req, res, next) => {
-    logger.error(err)
-    res.status(500).json({message: "Error Server", err})
-  })
+
+  .use(errorHandler)
