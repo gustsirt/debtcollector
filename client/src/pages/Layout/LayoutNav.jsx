@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 
-
 const LayoutNav = () => {
   const [isPublic, setIsPublic] = useState(true)
   const [navItems, setNavItems] = useState([

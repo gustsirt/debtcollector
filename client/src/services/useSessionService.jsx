@@ -1,8 +1,11 @@
 import { useContext } from "react";
 import { ContextConfig } from "../context/ContextConfig.jsx";
+import { ContextUser } from "../context/ContextUser.jsx";
+
 
 function useSessionService() {
   const { uriBase } = useContext(ContextConfig);
+  const { setToken } = useContext(ContextUser)
   const headers = new Headers();
   headers.append("Content-Type", "application/json");
 
@@ -13,10 +16,11 @@ function useSessionService() {
         headers,
         body: JSON.stringify(element),
       });
-      const data = await response.json();
-      return data;
+      const responseJson = await response.json();
+      const token = responseJson.data.token;
+      setToken(`Bearer ${token}`)
+      return responseJson;
     } catch (error) {
-      console.error("Error al iniciar sesión:", error);
       throw error;
     }
   };
@@ -28,15 +32,22 @@ function useSessionService() {
         headers,
         body: JSON.stringify(element),
       });
-      const data = await response.json();
-      return data;
+      const responseJson = await response.json();
+      return responseJson;
     } catch (error) {
-      console.error("Error al registrar:", error);
       throw error;
     }
   };
 
-  return { sessionLogIn, sessionRegister };
+  sessionUser = async() => {
+    // const response = await fetch(`${this.uriBase}api/sessions/user`, {
+    //   method: "GET",
+    //   headers: this.headers
+    // })
+    // return await response.json()
+  }
+
+  return { sessionLogIn, sessionRegister, sessionUser };
 }
 
 export default useSessionService;

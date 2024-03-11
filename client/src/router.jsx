@@ -1,7 +1,7 @@
 import { createHashRouter } from 'react-router-dom';
 
 import Layout from './pages/Layout/Layout.jsx';
-//import Home from './pages/Home.jsx';
+import Home from './pages/Home.jsx';
 import LogIn from './pages/UserAccess/LogIn.jsx';
 import Register from './pages/UserAccess/Register.jsx';
 import Colores from './pages/temporal/Colores.jsx';
@@ -16,7 +16,7 @@ const router = createHashRouter([
     path: '/',
     element: <Layout />,
     children: [
-      { index: true, element: <LogIn /> },
+      { index: true, element: <Home /> },
       { path: 'login/', element: <LogIn /> },
       { path: 'register/', element: <Register /> },
       { path: 'products/', element: <Products /> },

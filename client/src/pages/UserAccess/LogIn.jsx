@@ -1,45 +1,33 @@
-import { useContext }     from "react";
-import { ContextUser }    from "../../context/ContextUser.jsx";
 import { useForm }        from "react-hook-form";
-import { useNavigate }    from "react-router-dom";
 import './useraccess.scss';
+import useSessionService from "../../services/useSessionService.jsx";
+import useSwalAlert from "../../hook/useSwalAlert.jsx";
 
 // TODO sacar Swal a un componente ALERT
 
 const LogIn = () => {
-  //const { setToken } = useContext( ContextUser );
-  const navigate = useNavigate();
+  const { sessionLogIn } = useSessionService();
+  const { messageAndRedirect } = useSwalAlert()
 
   const { register, handleSubmit } = useForm({
     mode: "onBlur",
     defaultValues: {
-      email: 'email@prueba.com',
-      password: '123456'
+      email: 'prueba@gmail.com',
+      password: '7123456'
     },
   });
 
   const onSubmit = async data => {
-    // try {
-    //   const requestOptions = {
-    //     method: "POST",
-    //     headers: {"Content-Type": "application/json"},
-    //     body: JSON.stringify(data),
-    //   };
-
-    //   const respJson = await fetch(`${uriBase}api/sessions/login`, requestOptions)
-    //   const resp = await respJson.json()
-
-    //   if(resp?.isError === false) {
-    //     setToken(`Bearer ${resp.payload.token}`)
-    //     Swal.fire({icon: "success", text: resp.message}).then((res) => { navigate("/products/", {replace: true}) })
-    //   } else {
-    //     Swal.fire({icon: "error", text: "Acceso no autorizado"})
-    //   }
-
-    // } catch (error) {
-    //   console.error(error);
-    //   Swal.fire({icon: "error", text: "Acceso no autorizado por un error en el sistema"})
-    // }
+    try {
+      const resp = await sessionLogIn(data)
+      if(resp?.isError === false) {
+        messageAndRedirect("Inicio de sessión exitoso", "success", "/")
+      } else {
+        messageAndRedirect("Se ha producido un error con datos enviados", "error")
+      }
+    } catch (error) {
+      messageAndRedirect("Error en el inicio de sessión debido a un problema en el sistema", "error")
+    }
   };
 
   return (
