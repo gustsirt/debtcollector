@@ -5,6 +5,13 @@ import Swal from 'sweetalert2'
 const useSwalAlert = () => {
   const navigate = useNavigate();
 
+  const message = ( message, icon ) => {
+    Swal.fire({
+      icon: icon,
+      text: message,
+    })
+  }
+
   const messageAndRedirect = ( message, icon, redirect = null) => {
     Swal.fire({
       icon: icon,
@@ -18,6 +25,7 @@ const useSwalAlert = () => {
   }
 
   return {
+    message,
     messageAndRedirect
   }
 }

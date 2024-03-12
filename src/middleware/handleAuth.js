@@ -13,7 +13,7 @@ export const handleAuth = (policies) => {
         if (err) next(err)
 
         if (user) {
-          req.user = await uControl.getUserSession(user.id)
+          req.user = {id: user.id, role: user.role} //await uControl.getUserSession(user.id)
         }
 
         if(policies[0] === 'PUBLIC') return next();

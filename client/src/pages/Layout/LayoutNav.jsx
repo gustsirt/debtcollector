@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { BiLogOut } from "react-icons/bi";
 
-const LayoutNav = () => {
-  const [isPublic, setIsPublic] = useState(true)
+const LayoutNav = ({user}) => {
+
+  const [isPublic, setIsPublic] = useState(!user)
   const [navItems, setNavItems] = useState([
     {
       path: "/",
@@ -35,16 +37,20 @@ const LayoutNav = () => {
       path: "register/",
       label: "Registrarse",
       onlyPublic: true,
-    },
+    }
   ])
 
+  useEffect(() => {
+    setIsPublic(!user);
+  }, [user]);
+  
   return (
     <nav className="nav">
       <ul>
         {navItems.map((item) => {
-          const showItem = isPublic
-            ? (item.visibleFor === undefined || item.onlyPublic === true)
-            : (item.onlyPublic === undefined || item.visibleFor !== undefined);
+          const showItem = 
+            (isPublic && (item.visibleFor === undefined || item.onlyPublic === true)) ||
+            (!isPublic && (item.onlyPublic === undefined || item.visibleFor !== undefined));
           return showItem ? (
             <li key={item.path}>
               <NavLink to={item.path}>{item.label}</NavLink>
@@ -52,6 +58,16 @@ const LayoutNav = () => {
           ) : null;
         })}
       </ul>
+      { user && (
+        <div className="user-widget">
+          <div className="user-area">
+            <div>
+              <NavLink to="user/">{user.name}</NavLink>
+              <NavLink to="logout/"><BiLogOut/></NavLink>
+            </div>
+            <p>Rol: {user.role}</p>
+          </div>
+        </div>)}
     </nav>
   )
 }

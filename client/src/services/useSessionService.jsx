@@ -5,7 +5,8 @@ import { ContextUser } from "../context/ContextUser.jsx";
 
 function useSessionService() {
   const { uriBase } = useContext(ContextConfig);
-  const { setToken } = useContext(ContextUser)
+  const { setToken, } = useContext(ContextUser)
+
   const headers = new Headers();
   headers.append("Content-Type", "application/json");
 
@@ -18,10 +19,11 @@ function useSessionService() {
       });
       const responseJson = await response.json();
       const token = responseJson.data.token;
+      console.log(token); // TODO luego quitar
       setToken(`Bearer ${token}`)
       return responseJson;
     } catch (error) {
-      throw error;
+      return { isError: true, message: "Ocurrió un error", error };
     }
   };
 
@@ -32,19 +34,24 @@ function useSessionService() {
         headers,
         body: JSON.stringify(element),
       });
-      const responseJson = await response.json();
-      return responseJson;
+      return await response.json()
     } catch (error) {
-      throw error;
+      return { isError: true, message: "Ocurrió un error", error };
     }
   };
 
-  sessionUser = async() => {
-    // const response = await fetch(`${this.uriBase}api/sessions/user`, {
-    //   method: "GET",
-    //   headers: this.headers
-    // })
-    // return await response.json()
+  const sessionUser = async (token) => {
+    try {
+      headers.append("Authorization", token);
+      const response = await fetch(`${uriBase}api/session/user`, {
+        method: "GET",
+        headers,
+      })
+      if(response.status >= 400) throw error;
+      return await response.json();
+    } catch (error) {
+      return { isError: true, message: "Ocurrió un error", error };
+    }
   }
 
   return { sessionLogIn, sessionRegister, sessionUser };

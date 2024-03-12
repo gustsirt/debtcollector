@@ -4,6 +4,10 @@ $layoutBrand: $fontB;
 $headercol1: $color;
 $headercol2: $cgrey3;
 
+$userFondo: $cgrey7;
+$userText: $clgt1;
+$userAlternative: $cblack;
+
 $main-back: $cgrey3;
 $footercol1: $clgt4;
 $footercol2: $cdrk3;
@@ -21,7 +25,10 @@ $footercol2: $cdrk3;
 
   nav{
     height: 100%;
+    width: 100%;
     margin: auto 0;
+    display: flex;
+    justify-content: space-between;
     ul{
       width: 100;
       display: flex;
@@ -40,6 +47,23 @@ $footercol2: $cdrk3;
           a {
             color: $headercol2;;
           }
+        }
+      }
+    }
+    .user-widget{
+      width: auto;
+      display: flex;
+      align-items: center;
+      
+      .user-area {
+        padding: 0.5em;
+        width: 13em;
+        background-color: $userFondo;
+        color: $userText;
+
+        a, p {
+          font-weight: 700;
+          margin: auto 0.5em;
         }
       }
     }

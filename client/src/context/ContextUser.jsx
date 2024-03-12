@@ -2,11 +2,11 @@ import { createContext, useEffect, useState } from 'react'
 
 export const ContextUser = createContext()
 
-const tokenPrevio = JSON.parse(localStorage.getItem("token"))
-
 const UserProvider = ({children}) => {
+  const localtoken = JSON.parse(localStorage.getItem('token'));
+
   const [user, setUser] = useState({})
-  const [token, setToken] = useState(tokenPrevio)
+  const [token, setToken] = useState(localtoken)
 
   useEffect (() => {localStorage.setItem("token", JSON.stringify(token))}, [token])
 

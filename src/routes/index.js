@@ -1,5 +1,5 @@
 import { Router } from "express";
-import sessionsRoute from "./api/sessions.route.js"
+import sessionsRoute from "./api/users.session.route.js"
 import ClientCRouter from "./api/clients.croute.js";
 import ProductCRouter from "./api/products.croute.js";
 import TransactionCRouter from "./api/transactions.croute.js";

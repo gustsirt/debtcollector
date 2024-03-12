@@ -64,7 +64,16 @@ class SessionsController {
     //res.clearCookie('token').redirect('/');
 */}
 
-  getUserSession = async (id) => {
+  getUserSession = async (req, res, next) => {
+    try {
+      res.sendSuccess(await this.getUser(req.user.id))
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  // AUXILIARY
+  getUser = async (id) => {
     const user = await this.service.getBy({_id: id});
 
     return {
@@ -76,9 +85,8 @@ class SessionsController {
       cart: user?.cart,
       ...this.handleAccess(user?.role)
     };
-  } // auxiliar function for Handle Authorization
+  }
 
-  // AUXILIARY
   handleAccess = role => {
     const access = {}
       if (role === 'user_premium') access.accessPremium = true;
