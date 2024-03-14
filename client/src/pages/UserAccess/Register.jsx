@@ -4,7 +4,7 @@ import useSessionService from "../../services/useSessionService.jsx";
 import useSwalAlert from "../../hook/useSwalAlert.jsx";
 
 const Register = () => {
-  const { sessionRegister } = useSessionService();
+  const { sessionRegister, welcomeMessage } = useSessionService();
   const { messageAndRedirect } = useSwalAlert()
   const { register, handleSubmit, getValues, formState: { errors, isDirty, isValid } } = useForm({
     mode: "onBlur",
@@ -17,8 +17,10 @@ const Register = () => {
   const onSubmit = async data => {
     try {
       const resp = await sessionRegister(data)
+      //console.log(resp);
 
       if (resp?.isError === false) {
+        welcomeMessage(resp.data.token)
         messageAndRedirect("Login Exitoso", "success", "/login")
       } else {
         messageAndRedirect(resp.message || "Error al registrarse", "error")

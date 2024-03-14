@@ -5,7 +5,7 @@ const uControl = new SessionsController();
 
 // ? AUTH JWT BEARER - PASSPORT
 
-export const handleAuth = (policies) => {
+export const handleAuth = (policies, dataUser = false) => {
   // Policies => ['PUBLIC', 'USER', 'USER_PREMIUM', 'ADMIN']
   return async (req, res, next) => {
     try {
@@ -13,7 +13,9 @@ export const handleAuth = (policies) => {
         if (err) next(err)
 
         if (user) {
-          req.user = {id: user.id, role: user.role} //await uControl.getUserSession(user.id)
+          req.user = dataUser
+            ? await uControl.getUser(user.id)
+            : {id: user.id, role: user.role}
         }
 
         if(policies[0] === 'PUBLIC') return next();

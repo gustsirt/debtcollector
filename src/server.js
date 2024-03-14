@@ -18,7 +18,7 @@ const app = express();
 connectDb()
 
 // configuraciones de la App
-app.use(cors())
+app.use(cors()); //{ origin: configObject.cors_origin }
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));

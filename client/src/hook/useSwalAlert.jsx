@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-
 import Swal from 'sweetalert2'
 
 const useSwalAlert = () => {
@@ -24,9 +23,20 @@ const useSwalAlert = () => {
     });
   }
 
+  const messageAndReload = ( message, icon) => {
+    Swal.fire({
+      icon: icon,
+      text: message,
+      showConfirmButton: true,
+    }).then(() => {
+      window.location.reload();
+    });
+  }
+
   return {
     message,
-    messageAndRedirect
+    messageAndRedirect,
+    messageAndReload
   }
 }
 export default useSwalAlert

@@ -54,7 +54,22 @@ function useSessionService() {
     }
   }
 
-  return { sessionLogIn, sessionRegister, sessionUser };
+  const welcomeMessage = async (token) => {
+    try {
+      headers.append("Authorization", `Bearer ${token}`);
+      const response = await fetch(`${uriBase}api/mail/send?layout=welcome`, {
+        method: "POST",
+        headers,
+      })
+      console.log(response);
+      if(response.status >= 400) throw error;
+      return await response.json();
+    } catch (error) {
+      return { isError: true, message: "Ocurrió un error", error };
+    }
+  }
+
+  return { sessionLogIn, sessionRegister, sessionUser, welcomeMessage };
 }
 
 export default useSessionService;

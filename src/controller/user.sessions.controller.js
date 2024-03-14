@@ -26,7 +26,9 @@ class SessionsController {
       if (exists || this.admins.includes(userData.email)) throw new UserError(`A user with that email already exists.`)
       
       const newUser = await this.service.create(userData)
-      res.sendSuccess(newUser._id, "Successful registration")
+
+      const token = createToken({id: newUser._id, role: newUser.role})
+      res.sendSuccess({token}, "Successful registration")
 
     } catch (error) {
       next(error)
@@ -64,6 +66,21 @@ class SessionsController {
     //res.clearCookie('token').redirect('/');
 */}
 
+  userRecovery = async (req, res, next) => {
+    try {
+      const { email } = req.query
+
+      const userFound = await this.service.getBy({email});
+
+      const token = createToken({id: userFound._id, role: userFound.role}, "1h")
+
+      // enviar mail de recuperación
+    } catch (error) {
+      next(error);
+    }
+  }
+
+
   getUserSession = async (req, res, next) => {
     try {
       res.sendSuccess(await this.getUser(req.user.id))
@@ -82,7 +99,6 @@ class SessionsController {
       lname: user?.last_name,
       email: user?.email,
       role: user?.role,
-      cart: user?.cart,
       ...this.handleAccess(user?.role)
     };
   }

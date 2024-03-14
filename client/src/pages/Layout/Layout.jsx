@@ -24,7 +24,10 @@ const Layout = () => {
           if (!resp.isError) {
             setUser(resp.data);
           } else {
-            messageAndRedirect("Error al iniciar el usuario, refresque la pagina", "error");
+            setUser(null);
+            setToken(null);
+            localStorage.removeItem('token');
+            messageAndRedirect("Error al iniciar el usuario, refresque la pagina", "error", '/login');
           }
         } else {
           // console.log("no token");
@@ -34,7 +37,7 @@ const Layout = () => {
         setUser(null);
         setToken(null);
         localStorage.removeItem('token');
-        messageAndRedirect("Se ha producido un error, vuelva a iniciar session", "error", "/login");
+        messageAndRedirect("Se ha producido un error, vuelva a iniciar session", "error", '/login');
       }
     };
   
