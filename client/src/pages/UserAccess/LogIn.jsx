@@ -2,8 +2,7 @@ import { useForm }        from "react-hook-form";
 import './useraccess.scss';
 import useSessionService from "../../services/useSessionService.jsx";
 import useSwalAlert from "../../hook/useSwalAlert.jsx";
-
-// TODO sacar Swal a un componente ALERT
+import { Link } from "react-router-dom";
 
 const LogIn = () => {
   const { sessionLogIn } = useSessionService();
@@ -40,6 +39,7 @@ const LogIn = () => {
         <input type="password" {...register("password", { required: true})} />
         <button type="submit">Iniciar Sesión</button>
       </form>
+      <Link to='/recovery' className="recovery-link">Recupera tu contraseña</Link>
     </div>
   )
 }

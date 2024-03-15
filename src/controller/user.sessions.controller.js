@@ -68,18 +68,19 @@ class SessionsController {
 
   userRecovery = async (req, res, next) => {
     try {
-      const { email } = req.query
+      req.logger.info('llege a userRecovery')
+      // const { email } = req.query
 
-      const userFound = await this.service.getBy({email});
+      // const userFound = await this.service.getBy({email});
 
-      const token = createToken({id: userFound._id, role: userFound.role}, "1h")
+      // const token = createToken({id: userFound._id, role: userFound.role}, "1h")
 
       // enviar mail de recuperación
     } catch (error) {
       next(error);
     }
   }
-
+  userRecoveryPassword = async () => {}
 
   getUserSession = async (req, res, next) => {
     try {

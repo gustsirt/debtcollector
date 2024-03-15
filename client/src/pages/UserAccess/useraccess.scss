@@ -10,6 +10,8 @@ $bot-csubmit-disable: $cgrey3;
 
 $font-alert: red;
 
+$recovery-clink: $cdrk2;
+
 .form-container-vert {
   margin: auto;
   margin-bottom: 1em;
@@ -63,4 +65,11 @@ $font-alert: red;
     font-size: 14px;
     margin-top: 5px;
   }
+}
+.recovery-link{
+  color: $recovery-clink;
+}
+.recovery-link:hover{
+  color: $cblack;
+  filter: drop-shadow(0 1px 1px grey);
 }

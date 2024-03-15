@@ -19,7 +19,6 @@ function useSessionService() {
       });
       const responseJson = await response.json();
       const token = responseJson.data.token;
-      console.log(token); // TODO luego quitar
       setToken(`Bearer ${token}`)
       return responseJson;
     } catch (error) {
@@ -61,7 +60,6 @@ function useSessionService() {
         method: "POST",
         headers,
       })
-      console.log(response);
       if(response.status >= 400) throw error;
       return await response.json();
     } catch (error) {
@@ -69,7 +67,22 @@ function useSessionService() {
     }
   }
 
-  return { sessionLogIn, sessionRegister, sessionUser, welcomeMessage };
+  const userRecovery = async (element) => {
+    try {
+      const response = await fetch(`${uriBase}api/session/userrecovery`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify(element),
+      });
+      const responseJson = await response.json();
+      return responseJson;
+    } catch (error) {
+      return { isError: true, message: "Ocurrió un error", error };
+    }
+  }
+  const userRecoveryPassword = async () => {}
+
+  return { sessionLogIn, sessionRegister, sessionUser, welcomeMessage, userRecovery };
 }
 
 export default useSessionService;

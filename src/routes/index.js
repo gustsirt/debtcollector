@@ -6,14 +6,13 @@ import TransactionCRouter from "./api/transactions.croute.js";
 import pruebasRouter from "./api/xpruebas.route.js";
 import mailRoute from "./api/mail.route.js";
 import errorHandler from "../middleware/handleError.js";
-
-//import { handleAuth } from "../middleware/auth/handlePoliciesPASP.js";
+import { handleAuth } from "../middleware/handleAuth.js";
 
 const router = Router();
 //const clientsRoute = new ClientCRouter()
 export default router
   .use('/api/session/',     sessionsRoute)
-  .use('/api/users/',       () => {})
+  .use('/api/users/',       handleAuth(['ADMIN']), () => {})
   .use('/api/clients/',     (new ClientCRouter()).getRouter())
   .use('/api/products/',    (new ProductCRouter()).getRouter())
   .use('/api/transaction/', (new TransactionCRouter()).getRouter())

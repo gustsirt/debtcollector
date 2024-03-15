@@ -12,6 +12,7 @@ router
   .post('/login', sControl.login)
   .get ('/logout', sControl.logout)
   .get ('/user', handleAuth(["USER"]), sControl.getUserSession)
-  .get ('/userrecovery', sControl.userRecovery)
+  .post('/userrecovery', sControl.userRecovery)
+  .put ('/userrecovery', sControl.userRecoveryPassword)
 
 export default router;
