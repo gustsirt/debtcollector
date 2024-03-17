@@ -4,6 +4,7 @@ import Layout from './pages/Layout/Layout.jsx';
 import Home from './pages/Home.jsx';
 import LogIn from './pages/UserAccess/LogIn.jsx';
 import Recovery from './pages/UserAccess/Recovery.jsx';
+import RecoveryPassword from './pages/UserAccess/RecoveryPassword.jsx';
 import Register from './pages/UserAccess/Register.jsx';
 import Logout from './pages/UserAccess/LogOut.jsx';
 import Colores from './pages/temporal/Colores.jsx';
@@ -23,7 +24,7 @@ const router = createHashRouter([
       { index: true, element: <Home />},
       { path: 'login/', element: <LogIn /> },
       { path: 'recovery/', element: <Recovery /> },
-      { path: 'recoverypaswoord/', element: <LogIn /> },
+      { path: 'recoverypassword/', element: <RecoveryPassword /> },
       { path: 'register/', element: <Register /> },
       { path: 'logout/', element: <Logout /> },
       { path: 'products/', element: <Products /> },

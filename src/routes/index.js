@@ -1,10 +1,9 @@
 import { Router } from "express";
-import sessionsRoute from "./api/users.session.route.js"
+import sessionsRoute from "../users_sessions/api/session.route.js"
 import ClientCRouter from "./api/clients.croute.js";
 import ProductCRouter from "./api/products.croute.js";
 import TransactionCRouter from "./api/transactions.croute.js";
 import pruebasRouter from "./api/xpruebas.route.js";
-import mailRoute from "./api/mail.route.js";
 import errorHandler from "../middleware/handleError.js";
 import { handleAuth } from "../middleware/handleAuth.js";
 
@@ -19,7 +18,6 @@ export default router
   .use('/api/payments/',    () => {})
   .use('/api/messages/',    ( ) => {})
   .use('/api/pruebas/',     pruebasRouter)
-  .use('/api/mail/',        mailRoute)
   .use('*', (req, res) => res.status(404).send('Not Found'))
 
   .use(errorHandler)

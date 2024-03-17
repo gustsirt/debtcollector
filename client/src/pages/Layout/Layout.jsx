@@ -42,7 +42,7 @@ const Layout = () => {
     };
   
     fetchUser();
-  }, [token, user, setUser, setToken]);
+  }, [token]);
 
 
   return (

@@ -1,5 +1,5 @@
 import passport from "passport";
-import SessionsController from "../controller/user.sessions.controller.js";
+import SessionsController from "../users_sessions/logic/sessions.controller.js";
 
 const uControl = new SessionsController();
 
@@ -11,7 +11,7 @@ export const handleAuth = (policies, dataUser = false) => {
     try {
       passport.authenticate('jwt', {session: false}, async function (err, user, info) {
         if (err) next(err)
-
+        console.log(user);
         if (user) {
           req.user = dataUser
             ? await uControl.getUser(user.id)

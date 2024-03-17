@@ -1,5 +1,5 @@
 import { Router } from "express";
-import CustomError from "../../errors/customError.js";
+import CustomError from "../../libraries/errors/customError.js";
 import { handleAuth } from "../../middleware/handleAuth.js";
 
 
@@ -13,7 +13,7 @@ router
       user: req.user
     })
   })
-  .get('/error', (req, res) => {
+  .get('/error', (req, res, next) => {
     try {
       throw new CustomError("aaa","1231321321")
     } catch (error) {

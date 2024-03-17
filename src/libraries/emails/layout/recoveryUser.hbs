@@ -25,6 +25,7 @@
     .button {
       width: 300px;
       height: 50px;
+      padding: 15px;
       border-radius: 10px;
       color: white;
       background-color: black;
@@ -38,7 +39,14 @@
 <body>
   <h1 class="title">Mail de recuperación de Contraseña</h1>
   <hr/>
+  <p>Usuario: {{user.name}}</p>
+  <p>Usuario: {{user.email}}</p>
+  <br>
   <p>haga clic en el siguiente botón para recuperar su contraseña</p><br>
   <a class="button" href="{{url}}?token={{token}}">Recuperar contraseña</a>
+  <br>
+  <br>
+  <br>
+  <br>
 </body>
 </html>

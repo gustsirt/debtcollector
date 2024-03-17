@@ -1,4 +1,4 @@
-import CustomRouter from "../custom.route.js"
+import CustomRouter from "../../libraries/customs/route.class.js"
 import ClientsController from "../../controller/clients.controller.js";
 
 const cControl = new ClientsController()

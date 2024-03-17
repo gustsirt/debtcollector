@@ -2,9 +2,9 @@ import program from './config/commander.js';
 import express from 'express';
 import configObject, { connectDb } from './config/index.js';
 import cors from 'cors';
-import __dirname from './utils/dirname.js';
+import __dirname from './libraries/dirname.js';
 //import cookieParser from 'cookie-parser'
-import { addLogger, logger } from './utils/logger.js';
+import { addLogger, logger } from './libraries/logger.js';
 import handleResponses from './middleware/handleResponses.js';
 import passport from 'passport';
 import initializePassport from './middleware/auth/passport.config.js';

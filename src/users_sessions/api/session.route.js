@@ -1,5 +1,5 @@
 import { Router } from "express";
-import SessionsController from "../../controller/user.sessions.controller.js";
+import SessionsController from "../logic/sessions.controller.js";
 
 import { handleAuth } from "../../middleware/handleAuth.js";
 
@@ -13,6 +13,6 @@ router
   .get ('/logout', sControl.logout)
   .get ('/user', handleAuth(["USER"]), sControl.getUserSession)
   .post('/userrecovery', sControl.userRecovery)
-  .put ('/userrecovery', sControl.userRecoveryPassword)
+  .put ('/userrecovery', handleAuth(["USER"]), sControl.userRecoveryPassword)
 
 export default router;

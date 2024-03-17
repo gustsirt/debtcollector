@@ -1,4 +1,4 @@
-import CustomController from "./custom.controller.js";
+import CustomController from "../libraries/customs/controller.js";
 import { paymentPlanService, paymentService, transactionsService } from "../repository/service.js";
 import dayjs from "dayjs";
 

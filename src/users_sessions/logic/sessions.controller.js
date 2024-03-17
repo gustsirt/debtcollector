@@ -1,9 +1,10 @@
-import configObject from "../config/index.js";
-import CheckError from "../errors/CheckError.js";
-import { UserError } from "../errors/customError.js";
-import createToken from "../middleware/auth/createToken.js";
-import { createHash, isValidPassword } from "../middleware/auth/passwords.js";
-import { usersService } from "../repository/service.js";
+import configObject from "../../config/index.js";
+import sendEmailwithLayout from "../../libraries/emails/sendMail.js";
+import CheckError from "../../libraries/errors/CheckError.js";
+import { UserError } from "../../libraries/errors/customError.js";
+import createToken from "../../middleware/auth/createToken.js";
+import { createHash, isValidPassword } from "../../middleware/auth/passwords.js";
+import { usersService } from "./service.js";
 
 class SessionsController {
   constructor() {
@@ -27,6 +28,11 @@ class SessionsController {
       
       const newUser = await this.service.create(userData)
 
+      const user = newUser
+      const subject   = 'Bienvenido a DebtCollector'
+      
+      await sendEmailwithLayout({user}, subject, "welcome")
+      
       const token = createToken({id: newUser._id, role: newUser.role})
       res.sendSuccess({token}, "Successful registration")
 
@@ -67,20 +73,37 @@ class SessionsController {
 */}
 
   userRecovery = async (req, res, next) => {
-    try {
-      req.logger.info('llege a userRecovery')
-      // const { email } = req.query
-
-      // const userFound = await this.service.getBy({email});
-
-      // const token = createToken({id: userFound._id, role: userFound.role}, "1h")
+    try {      
+      const { email } = req.body
+      const userFound = await this.service.getBy({email});
+      const token = createToken({id: userFound._id, role: userFound.role}, '1h')
 
       // enviar mail de recuperación
+      const user = { name: userFound.first_name, email: userFound.email}
+      const subject   = 'Recuperar Contraseña'
+      const options = {
+        user,
+        url: `${configObject.cors_origin}/#/recoverypassword`,
+        token
+      }
+      const resp = await sendEmailwithLayout(options, subject, "recoveryUser")
+      
+      res.sendSuccess(resp)
     } catch (error) {
       next(error);
     }
   }
-  userRecoveryPassword = async () => {}
+  userRecoveryPassword = async (req, res, next) => {
+    try {
+      let { password } = req.body
+      password = createHash(password)
+      await this.service.update({_id: req.user.id}, {password})
+      
+      res.sendSuccess("User updated")
+    } catch (error) {
+      next(error);
+    }
+  }
 
   getUserSession = async (req, res, next) => {
     try {

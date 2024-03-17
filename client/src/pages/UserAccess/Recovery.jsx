@@ -1,16 +1,18 @@
 import { useForm }        from "react-hook-form";
 import './useraccess.scss';
 import useSessionService from "../../services/useSessionService";
+import useSwalAlert from "../../hook/useSwalAlert";
 
 const Recovery = () => {
   const { userRecovery } = useSessionService()
   const { register, handleSubmit } = useForm({});
+  const { messageAndRedirect } = useSwalAlert()
   
   const onSubmit = async data => {
     try {
       const resp = await userRecovery(data)
       if(resp?.isError === false) {
-        messageAndRedirect("Mail de recuperación enviado", "success")
+        messageAndRedirect("Mail de recuperación enviado. Revisa tu casilla de correo", "success")
       } else {
         messageAndRedirect("Se ha producido un error con datos los enviados", "error")
       }

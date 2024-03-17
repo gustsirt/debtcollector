@@ -1,4 +1,4 @@
-import LastUpdateDTO from '../dto/lastupdate.dto.js';
+import LastUpdateDTO from './dto.lastupdate.js';
 
 class CustomRepositoryLU {
   constructor(dao) {
@@ -10,7 +10,7 @@ class CustomRepositoryLU {
   update = async (filter, elementUpdate) => {
     const elementToUpdate = (new LastUpdateDTO(elementUpdate)).things;
     return await this.dao.update(filter, elementToUpdate)}
-  delete = async (filter)                => await this.dao.delete({_id: uid})
+  delete = async (filter)                => await this.dao.delete(filter)
   exists = async (filter)             => await this.dao.exists(filter)
 }
 

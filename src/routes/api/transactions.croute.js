@@ -1,4 +1,4 @@
-import CustomRouter from "../custom.route.js"
+import CustomRouter from "../../libraries/customs/route.class.js"
 import TransactionsController from "../../controller/transactions.controller.js";
 
 const traControl = new TransactionsController()

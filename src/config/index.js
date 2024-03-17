@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import program from './commander.js';
 import { connect } from 'mongoose';
-import { logger } from '../utils/logger.js';
+import { logger } from '../libraries/logger.js';
 
 const opts = program.opts();
 
@@ -11,6 +11,7 @@ dotenv.config({
 
 const configObject = {
   //conexion Mongo Atlas a traves de mongoose
+  app_name: process.env.APP_NAME,
   port: process.env.PORT,
   jwt_code: process.env.JWT_SECRET_CODE,
   cookies_code: process.env.COOKIES_SECRET_CODE,
